@@ -1,0 +1,130 @@
+Public Class frm_Cadastro
+
+Private Sub btn_adicionar_click(sender As Object, e As EventArgs) Handles MyBase.Click
+        Dim Nome As String = txtNome.Text
+        Dim Categoria As String = txtCategoria.Text
+        Dim Quantidade As String = txtQuantidade.Text
+        
+        
+        Dim connectionString As String = "server=Local instance MySQL57;banco=ecostock;user=admin;password:ecostockgtteam123456789"
+
+    
+        Dim query As String = "INSERT INTO Produtos WHERE nome = @nome, categoria = @categoria and quantidade = @quantidade"
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+               
+                connection.Open()
+
+                Using command As New SqlCommand(query, connection)
+                    
+                    command.Parameters.AddWithValue("@nome", Nome)
+                    command.Parameters.AddWithValue("@categoria", Categoria)
+                    command.Parameters.AddWithValue("@quantidade", Quantidade)
+
+                    
+                    Dim count As Integer = CInt(command.ExecuteScalar())
+
+                    
+                    If count > 0 Then
+                        MessageBox.Show("Produto cadastrado com sucesso!")
+                        txtNome.clear()
+                        txtQuantidade.clear()
+                        txtCategoria.clear()
+                    Else
+                        MessageBox.Show("Por favor, tente realizar o cadastro novamente.")
+                    End If
+                    return
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Ocorreu um erro: " & ex.Message)
+        End Try
+
+
+    End Sub
+
+
+Private Sub btn_remover_click(sender As Object, e As EventArgs) Handles MyBase.Click
+        Dim Nome As String = txtNome.Text
+        Dim Categoria As String = txtCategoria.Text
+        Dim Quantidade As String = txtQuantidade.Text
+        
+        
+        Dim connectionString As String = "server=Local instance MySQL57;banco=ecostock;user=admin;password:ecostockgtteam123456789"
+
+    
+        Dim query As String = "DELETE INTO Produtos WHERE nome = @nome and quantidade = @quantidade"
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+               
+                connection.Open()
+
+                Using command As New SqlCommand(query, connection)
+                    
+                    command.Parameters.AddWithValue("@nome", Nome)
+                    command.Parameters.AddWithValue("@quantidade", Quantidade)
+
+                    
+                    Dim count As Integer = CInt(command.ExecuteScalar())
+
+                    
+                    If count > 0 Then
+                        MessageBox.Show("Produto removido com sucesso!")
+          
+                    Else
+                        MessageBox.Show("Por favor, tente realizar a remoção novamente.")
+                    End If
+                    return
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Ocorreu um erro: " & ex.Message)
+        End Try
+    End Sub
+
+Private Sub btn_editar_click(sender As Object, e As EventArgs) Handles MyBase.Click
+        Dim Nome As String = txtNome.Text
+        Dim Categoria As String = txtCategoria.Text
+        Dim Quantidade As String = txtQuantidade.Text
+        
+        
+        Dim connectionString As String = "server=Local instance MySQL57;banco=ecostock;user=admin;password:ecostockgtteam123456789"
+
+    
+        Dim query As String = "UPDATE INTO Produtos WHERE nome = @nome, categoria = @categoria and quantidade = @quantidade"
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+               
+                connection.Open()
+
+                Using command As New SqlCommand(query, connection)
+                    
+                    command.Parameters.AddWithValue("@nome", Nome)
+                    command.Parameters.AddWithValue("@categoria", Categoria)
+                    command.Parameters.AddWithValue("@quantidade", Quantidade)
+
+                    
+                    Dim count As Integer = CInt(command.ExecuteScalar())
+
+                    
+                    If count > 0 Then
+                        MessageBox.Show("Produto editado com sucesso!")
+                        txtNome.clear()
+                        txtQuantidade.clear()
+                        txtCategoria.clear()
+                    Else
+                        MessageBox.Show("Por favor, tente realizar a edição novamente.")
+                    End If
+                    return
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Ocorreu um erro: " & ex.Message)
+        End Try
+    End Sub
+
+
+end Class
