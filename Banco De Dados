@@ -1,0 +1,48 @@
+drop database Ecostock;
+create database Ecostock;
+use Ecostock;
+
+create table usuario(
+  id_usuario int not null primary key auto_increment,
+  nome 			varchar(40) not null,
+  email 		varchar(40),
+  senha 		varchar(30),
+  cargo 		varchar(20)
+);
+
+create table produtos(
+  id_produto int not null primary key auto_increment,
+  nome 			varchar(30),
+  categoria 	varchar(20),
+  quantidade 	int,
+  data_validade date,
+  valor 		decimal(10,2),
+  id_usuario 	int,
+  foreign key (id_usuario) references usuario(id_usuario)
+);
+
+create table cadastro(
+  id_produto 	int not null,
+  id_usuario 	int,
+  nome 			varchar(40),
+  quantidade 	int,
+  primary key (id_produto, id_usuario),
+  foreign key (id_produto) references produtos(id_produto)
+);
+
+create table reciclagem(
+	id_produto int not null primary key auto_increment,
+	material varchar(30),
+	foreign key (id_produto) references produtos(id_produto)
+);
+
+create table relatorio(
+  id_produto 		int not null,
+  nome 				varchar(40),
+  categoria			varchar(40),
+  quantidade 		int,
+  material 			varchar(40),
+  valor 			decimal(10,2),
+  id_usuario 		int,
+  foreign key (id_usuario, id_produto) references produtos(id_usuario, id_produto)
+);
