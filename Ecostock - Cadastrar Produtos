@@ -1,69 +1,496 @@
-Public Class Frm_CadastrarProduto
-    Private produtoService As Object
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using Guna.UI2.WinForms;
+using Guna.UI2.WinForms.Enums;
+using Guna.UI2.WinForms.Suite;
+using Microsoft.VisualBasic.CompilerServices;
+using Trabalho_UPX_ECOSTOCK.My;
 
-    Private Sub Guna2GradientButton2_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton2.Click
-        Guna2TextBox1.Clear()
-        Guna2TextBox2.Clear()
-        Guna2TextBox3.Clear()
-        Guna2TextBox4.Clear()
-    End Sub
+namespace Trabalho_UPX_ECOSTOCK;
 
-    Private Sub Guna2CircleButton1_Click(sender As Object, e As EventArgs) Handles Guna2CircleButton1.Click
-        Frm_Menu.AbrirFormularioNoPainel(Of Frm_Cadastro)(Frm_Menu.Panel_Conteudo)
-    End Sub
+[DesignerGenerated]
+public class Frm_CadastrarProduto : Form
+{
+	private class Produto
+	{
+		public string nome { get; set; }
 
-    Private Sub Guna2GradientButton1_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton1.Click
+		public double preco { get; set; }
 
+		public int quantidade { get; set; }
 
-        Dim nome As String = Guna2TextBox1.Text
-        Dim preco As Double
-        Dim quantidade As Integer
+		public string categoria { get; set; }
+	}
 
-        If Not Double.TryParse(Guna2TextBox3.Text, preco) Then
+	private IContainer components;
 
-            Debugger.Launch()
+	[CompilerGenerated]
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[AccessedThroughProperty("Guna2GradientButton1")]
+	private Guna2GradientButton _Guna2GradientButton1;
 
+	[CompilerGenerated]
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[AccessedThroughProperty("Guna2GradientButton2")]
+	private Guna2GradientButton _Guna2GradientButton2;
 
-            Throw New FormatException("Por favor, insira um valor numérico válido para o preço.")
-        End If
+	[CompilerGenerated]
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[AccessedThroughProperty("Guna2CircleButton1")]
+	private Guna2CircleButton _Guna2CircleButton1;
 
-        If Not Integer.TryParse(Guna2TextBox2.Text, quantidade) Then
+	private object produtoService;
 
-            Debugger.Launch()
+	[field: AccessedThroughProperty("Label1")]
+	internal virtual Label Label1
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
+	[field: AccessedThroughProperty("Guna2TextBox1")]
+	internal virtual Guna2TextBox Guna2TextBox1
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
-            Throw New FormatException("Por favor, insira um valor inteiro válido para a quantidade.")
-        End If
+	[field: AccessedThroughProperty("Label2")]
+	internal virtual Label Label2
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
-        Dim categoria As String = Guna2TextBox4.Text
+	[field: AccessedThroughProperty("Label3")]
+	internal virtual Label Label3
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
-        Dim produto As New Produto With {
-        .nome = nome,
-        .preco = Decimal.Parse(preco),
-        .quantidade = quantidade,
-        .categoria = categoria
-    }
+	[field: AccessedThroughProperty("Guna2TextBox2")]
+	internal virtual Guna2TextBox Guna2TextBox2
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
+	[field: AccessedThroughProperty("Label4")]
+	internal virtual Label Label4
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
-        produtoService.CadastrarProduto(produto)
+	[field: AccessedThroughProperty("Guna2TextBox3")]
+	internal virtual Guna2TextBox Guna2TextBox3
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
+	[field: AccessedThroughProperty("Label5")]
+	internal virtual Label Label5
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
-        Guna2TextBox1.Text = ""
-        Guna2TextBox3.Text = ""
-        Guna2TextBox2.Text = ""
-        Guna2TextBox4.Text = ""
+	[field: AccessedThroughProperty("Guna2TextBox4")]
+	internal virtual Guna2TextBox Guna2TextBox4
+	{
+		get; [MethodImpl(MethodImplOptions.Synchronized)]
+		set;
+	}
 
-        MessageBox.Show("Produto cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+	internal virtual Guna2GradientButton Guna2GradientButton1
+	{
+		[CompilerGenerated]
+		get
+		{
+			return _Guna2GradientButton1;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[CompilerGenerated]
+		set
+		{
+			EventHandler value2 = Guna2GradientButton1_Click;
+			Guna2GradientButton guna2GradientButton = _Guna2GradientButton1;
+			if (guna2GradientButton != null)
+			{
+				guna2GradientButton.Click -= value2;
+			}
+			_Guna2GradientButton1 = value;
+			guna2GradientButton = _Guna2GradientButton1;
+			if (guna2GradientButton != null)
+			{
+				guna2GradientButton.Click += value2;
+			}
+		}
+	}
 
-    End Sub
+	internal virtual Guna2GradientButton Guna2GradientButton2
+	{
+		[CompilerGenerated]
+		get
+		{
+			return _Guna2GradientButton2;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[CompilerGenerated]
+		set
+		{
+			EventHandler value2 = Guna2GradientButton2_Click;
+			Guna2GradientButton guna2GradientButton = _Guna2GradientButton2;
+			if (guna2GradientButton != null)
+			{
+				guna2GradientButton.Click -= value2;
+			}
+			_Guna2GradientButton2 = value;
+			guna2GradientButton = _Guna2GradientButton2;
+			if (guna2GradientButton != null)
+			{
+				guna2GradientButton.Click += value2;
+			}
+		}
+	}
 
+	internal virtual Guna2CircleButton Guna2CircleButton1
+	{
+		[CompilerGenerated]
+		get
+		{
+			return _Guna2CircleButton1;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[CompilerGenerated]
+		set
+		{
+			EventHandler value2 = Guna2CircleButton1_Click;
+			Guna2CircleButton guna2CircleButton = _Guna2CircleButton1;
+			if (guna2CircleButton != null)
+			{
+				guna2CircleButton.Click -= value2;
+			}
+			_Guna2CircleButton1 = value;
+			guna2CircleButton = _Guna2CircleButton1;
+			if (guna2CircleButton != null)
+			{
+				guna2CircleButton.Click += value2;
+			}
+		}
+	}
 
-    Private Class Produto
-        Public Property nome As String
-        Public Property preco As Double
-        Public Property quantidade As Integer
-        Public Property categoria As String
-    End Class
-End Class
+	public Frm_CadastrarProduto()
+	{
+		InitializeComponent();
+	}
 
+	[DebuggerNonUserCode]
+	protected override void Dispose(bool disposing)
+	{
+		try
+		{
+			if (disposing && components != null)
+			{
+				components.Dispose();
+			}
+		}
+		finally
+		{
+			base.Dispose(disposing);
+		}
+	}
 
+	[System.Diagnostics.DebuggerStepThrough]
+	private void InitializeComponent()
+	{
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Trabalho_UPX_ECOSTOCK.Frm_CadastrarProduto));
+		Guna.UI2.WinForms.Suite.CustomizableEdges CustomizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+		this.Label1 = new System.Windows.Forms.Label();
+		this.Guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+		this.Label2 = new System.Windows.Forms.Label();
+		this.Label3 = new System.Windows.Forms.Label();
+		this.Guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+		this.Label4 = new System.Windows.Forms.Label();
+		this.Guna2TextBox3 = new Guna.UI2.WinForms.Guna2TextBox();
+		this.Label5 = new System.Windows.Forms.Label();
+		this.Guna2TextBox4 = new Guna.UI2.WinForms.Guna2TextBox();
+		this.Guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
+		this.Guna2GradientButton2 = new Guna.UI2.WinForms.Guna2GradientButton();
+		this.Guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
+		base.SuspendLayout();
+		this.Label1.AutoSize = true;
+		this.Label1.Font = new System.Drawing.Font("Segoe UI", 20f);
+		this.Label1.ForeColor = System.Drawing.Color.White;
+		this.Label1.Location = new System.Drawing.Point(164, 33);
+		this.Label1.Name = "Label1";
+		this.Label1.Size = new System.Drawing.Size(185, 37);
+		this.Label1.TabIndex = 0;
+		this.Label1.Text = "Novo Produto";
+		this.Guna2TextBox1.Animated = true;
+		this.Guna2TextBox1.BorderRadius = 8;
+		this.Guna2TextBox1.CustomizableEdges = CustomizableEdges1;
+		this.Guna2TextBox1.DefaultText = "";
+		this.Guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(208, 208, 208);
+		this.Guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(226, 226, 226);
+		this.Guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+		this.Guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+		this.Guna2TextBox1.FillColor = System.Drawing.Color.FromArgb(209, 211, 212);
+		this.Guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
+		this.Guna2TextBox1.Font = new System.Drawing.Font("Segoe UI", 11f);
+		this.Guna2TextBox1.ForeColor = System.Drawing.Color.Black;
+		this.Guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
+		this.Guna2TextBox1.Location = new System.Drawing.Point(164, 193);
+		this.Guna2TextBox1.Margin = new System.Windows.Forms.Padding(4);
+		this.Guna2TextBox1.Name = "Guna2TextBox1";
+		this.Guna2TextBox1.PasswordChar = '\0';
+		this.Guna2TextBox1.PlaceholderForeColor = System.Drawing.Color.DimGray;
+		this.Guna2TextBox1.PlaceholderText = "";
+		this.Guna2TextBox1.SelectedText = "";
+		this.Guna2TextBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges6;
+		this.Guna2TextBox1.Size = new System.Drawing.Size(698, 40);
+		this.Guna2TextBox1.TabIndex = 2;
+		this.Label2.AutoSize = true;
+		this.Label2.Font = new System.Drawing.Font("Segoe UI", 15f);
+		this.Label2.ForeColor = System.Drawing.Color.White;
+		this.Label2.Location = new System.Drawing.Point(164, 161);
+		this.Label2.Name = "Label2";
+		this.Label2.Size = new System.Drawing.Size(176, 28);
+		this.Label2.TabIndex = 3;
+		this.Label2.Text = "Nome do Produto:";
+		this.Label3.AutoSize = true;
+		this.Label3.Font = new System.Drawing.Font("Segoe UI", 15f);
+		this.Label3.ForeColor = System.Drawing.Color.White;
+		this.Label3.Location = new System.Drawing.Point(164, 285);
+		this.Label3.Name = "Label3";
+		this.Label3.Size = new System.Drawing.Size(119, 28);
+		this.Label3.TabIndex = 4;
+		this.Label3.Text = "Quantidade:";
+		this.Guna2TextBox2.Animated = true;
+		this.Guna2TextBox2.BorderRadius = 8;
+		this.Guna2TextBox2.CustomizableEdges = CustomizableEdges7;
+		this.Guna2TextBox2.DefaultText = "";
+		this.Guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(208, 208, 208);
+		this.Guna2TextBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(226, 226, 226);
+		this.Guna2TextBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+		this.Guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+		this.Guna2TextBox2.FillColor = System.Drawing.Color.FromArgb(209, 211, 212);
+		this.Guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
+		this.Guna2TextBox2.Font = new System.Drawing.Font("Segoe UI", 11f);
+		this.Guna2TextBox2.ForeColor = System.Drawing.Color.Black;
+		this.Guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
+		this.Guna2TextBox2.Location = new System.Drawing.Point(164, 317);
+		this.Guna2TextBox2.Margin = new System.Windows.Forms.Padding(4);
+		this.Guna2TextBox2.Name = "Guna2TextBox2";
+		this.Guna2TextBox2.PasswordChar = '\0';
+		this.Guna2TextBox2.PlaceholderForeColor = System.Drawing.Color.DimGray;
+		this.Guna2TextBox2.PlaceholderText = "";
+		this.Guna2TextBox2.SelectedText = "";
+		this.Guna2TextBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges8;
+		this.Guna2TextBox2.Size = new System.Drawing.Size(185, 40);
+		this.Guna2TextBox2.TabIndex = 5;
+		this.Label4.AutoSize = true;
+		this.Label4.Font = new System.Drawing.Font("Segoe UI", 15f);
+		this.Label4.ForeColor = System.Drawing.Color.White;
+		this.Label4.Location = new System.Drawing.Point(419, 285);
+		this.Label4.Name = "Label4";
+		this.Label4.Size = new System.Drawing.Size(65, 28);
+		this.Label4.TabIndex = 6;
+		this.Label4.Text = "Preço:";
+		this.Guna2TextBox3.Animated = true;
+		this.Guna2TextBox3.BorderRadius = 8;
+		this.Guna2TextBox3.CustomizableEdges = CustomizableEdges9;
+		this.Guna2TextBox3.DefaultText = "";
+		this.Guna2TextBox3.DisabledState.BorderColor = System.Drawing.Color.FromArgb(208, 208, 208);
+		this.Guna2TextBox3.DisabledState.FillColor = System.Drawing.Color.FromArgb(226, 226, 226);
+		this.Guna2TextBox3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+		this.Guna2TextBox3.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+		this.Guna2TextBox3.FillColor = System.Drawing.Color.FromArgb(209, 211, 212);
+		this.Guna2TextBox3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
+		this.Guna2TextBox3.Font = new System.Drawing.Font("Segoe UI", 11f);
+		this.Guna2TextBox3.ForeColor = System.Drawing.Color.Black;
+		this.Guna2TextBox3.HoverState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
+		this.Guna2TextBox3.Location = new System.Drawing.Point(419, 317);
+		this.Guna2TextBox3.Margin = new System.Windows.Forms.Padding(4);
+		this.Guna2TextBox3.Name = "Guna2TextBox3";
+		this.Guna2TextBox3.PasswordChar = '\0';
+		this.Guna2TextBox3.PlaceholderForeColor = System.Drawing.Color.DimGray;
+		this.Guna2TextBox3.PlaceholderText = "R$";
+		this.Guna2TextBox3.SelectedText = "";
+		this.Guna2TextBox3.ShadowDecoration.CustomizableEdges = CustomizableEdges10;
+		this.Guna2TextBox3.Size = new System.Drawing.Size(185, 40);
+		this.Guna2TextBox3.TabIndex = 7;
+		this.Label5.AutoSize = true;
+		this.Label5.Font = new System.Drawing.Font("Segoe UI", 15f);
+		this.Label5.ForeColor = System.Drawing.Color.White;
+		this.Label5.Location = new System.Drawing.Point(677, 285);
+		this.Label5.Name = "Label5";
+		this.Label5.Size = new System.Drawing.Size(101, 28);
+		this.Label5.TabIndex = 8;
+		this.Label5.Text = "Categoria:";
+		this.Guna2TextBox4.Animated = true;
+		this.Guna2TextBox4.BorderRadius = 8;
+		this.Guna2TextBox4.CustomizableEdges = CustomizableEdges11;
+		this.Guna2TextBox4.DefaultText = "";
+		this.Guna2TextBox4.DisabledState.BorderColor = System.Drawing.Color.FromArgb(208, 208, 208);
+		this.Guna2TextBox4.DisabledState.FillColor = System.Drawing.Color.FromArgb(226, 226, 226);
+		this.Guna2TextBox4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+		this.Guna2TextBox4.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+		this.Guna2TextBox4.FillColor = System.Drawing.Color.FromArgb(209, 211, 212);
+		this.Guna2TextBox4.FocusedState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
+		this.Guna2TextBox4.Font = new System.Drawing.Font("Segoe UI", 11f);
+		this.Guna2TextBox4.ForeColor = System.Drawing.Color.Black;
+		this.Guna2TextBox4.HoverState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
+		this.Guna2TextBox4.Location = new System.Drawing.Point(677, 317);
+		this.Guna2TextBox4.Margin = new System.Windows.Forms.Padding(4);
+		this.Guna2TextBox4.Name = "Guna2TextBox4";
+		this.Guna2TextBox4.PasswordChar = '\0';
+		this.Guna2TextBox4.PlaceholderForeColor = System.Drawing.Color.DimGray;
+		this.Guna2TextBox4.PlaceholderText = "";
+		this.Guna2TextBox4.SelectedText = "";
+		this.Guna2TextBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges12;
+		this.Guna2TextBox4.Size = new System.Drawing.Size(185, 40);
+		this.Guna2TextBox4.TabIndex = 9;
+		this.Guna2GradientButton1.Animated = true;
+		this.Guna2GradientButton1.AutoRoundedCorners = true;
+		this.Guna2GradientButton1.BorderRadius = 20;
+		this.Guna2GradientButton1.CustomizableEdges = CustomizableEdges13;
+		this.Guna2GradientButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+		this.Guna2GradientButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+		this.Guna2GradientButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
+		this.Guna2GradientButton1.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(169, 169, 169);
+		this.Guna2GradientButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
+		this.Guna2GradientButton1.FillColor = System.Drawing.Color.FromArgb(79, 157, 0);
+		this.Guna2GradientButton1.FillColor2 = System.Drawing.Color.FromArgb(0, 77, 38);
+		this.Guna2GradientButton1.Font = new System.Drawing.Font("Segoe UI", 12f, System.Drawing.FontStyle.Bold);
+		this.Guna2GradientButton1.ForeColor = System.Drawing.Color.White;
+		this.Guna2GradientButton1.Location = new System.Drawing.Point(700, 442);
+		this.Guna2GradientButton1.Name = "Guna2GradientButton1";
+		this.Guna2GradientButton1.ShadowDecoration.CustomizableEdges = CustomizableEdges2;
+		this.Guna2GradientButton1.Size = new System.Drawing.Size(162, 42);
+		this.Guna2GradientButton1.TabIndex = 10;
+		this.Guna2GradientButton1.Text = "Cadastrar";
+		this.Guna2GradientButton2.Animated = true;
+		this.Guna2GradientButton2.AutoRoundedCorners = true;
+		this.Guna2GradientButton2.BorderRadius = 20;
+		this.Guna2GradientButton2.CustomizableEdges = CustomizableEdges3;
+		this.Guna2GradientButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+		this.Guna2GradientButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+		this.Guna2GradientButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
+		this.Guna2GradientButton2.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(169, 169, 169);
+		this.Guna2GradientButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
+		this.Guna2GradientButton2.FillColor = System.Drawing.Color.FromArgb(0, 77, 38);
+		this.Guna2GradientButton2.FillColor2 = System.Drawing.Color.FromArgb(79, 157, 0);
+		this.Guna2GradientButton2.Font = new System.Drawing.Font("Segoe UI", 12f, System.Drawing.FontStyle.Bold);
+		this.Guna2GradientButton2.ForeColor = System.Drawing.Color.White;
+		this.Guna2GradientButton2.Location = new System.Drawing.Point(507, 442);
+		this.Guna2GradientButton2.Name = "Guna2GradientButton2";
+		this.Guna2GradientButton2.ShadowDecoration.CustomizableEdges = CustomizableEdges4;
+		this.Guna2GradientButton2.Size = new System.Drawing.Size(162, 42);
+		this.Guna2GradientButton2.TabIndex = 11;
+		this.Guna2GradientButton2.Text = "Limpar";
+		this.Guna2CircleButton1.BackgroundImage = (System.Drawing.Image)resources.GetObject("Guna2CircleButton1.BackgroundImage");
+		this.Guna2CircleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+		this.Guna2CircleButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+		this.Guna2CircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+		this.Guna2CircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
+		this.Guna2CircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
+		this.Guna2CircleButton1.FillColor = System.Drawing.Color.Transparent;
+		this.Guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 9f);
+		this.Guna2CircleButton1.ForeColor = System.Drawing.Color.White;
+		this.Guna2CircleButton1.ImageSize = new System.Drawing.Size(30, 30);
+		this.Guna2CircleButton1.Location = new System.Drawing.Point(73, 33);
+		this.Guna2CircleButton1.Name = "Guna2CircleButton1";
+		this.Guna2CircleButton1.ShadowDecoration.CustomizableEdges = CustomizableEdges5;
+		this.Guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+		this.Guna2CircleButton1.Size = new System.Drawing.Size(27, 27);
+		this.Guna2CircleButton1.TabIndex = 32;
+		base.AutoScaleDimensions = new System.Drawing.SizeF(7f, 15f);
+		base.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+		this.BackColor = System.Drawing.Color.FromArgb(0, 44, 72);
+		base.ClientSize = new System.Drawing.Size(1056, 718);
+		base.Controls.Add(this.Guna2CircleButton1);
+		base.Controls.Add(this.Guna2GradientButton2);
+		base.Controls.Add(this.Guna2GradientButton1);
+		base.Controls.Add(this.Guna2TextBox4);
+		base.Controls.Add(this.Label5);
+		base.Controls.Add(this.Guna2TextBox3);
+		base.Controls.Add(this.Label4);
+		base.Controls.Add(this.Guna2TextBox2);
+		base.Controls.Add(this.Label3);
+		base.Controls.Add(this.Label2);
+		base.Controls.Add(this.Guna2TextBox1);
+		base.Controls.Add(this.Label1);
+		base.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+		base.Name = "Frm_CadastrarProduto";
+		this.Text = "Frm_Cadastrar";
+		base.ResumeLayout(false);
+		base.PerformLayout();
+	}
+
+	private void Guna2GradientButton2_Click(object sender, EventArgs e)
+	{
+		Guna2TextBox1.Clear();
+		Guna2TextBox2.Clear();
+		Guna2TextBox3.Clear();
+		Guna2TextBox4.Clear();
+	}
+
+	private void Guna2CircleButton1_Click(object sender, EventArgs e)
+	{
+		MyProject.Forms.Frm_Menu.AbrirFormularioNoPainel<Frm_Cadastro>(MyProject.Forms.Frm_Menu.Panel_Conteudo);
+	}
+
+	private void Guna2GradientButton1_Click(object sender, EventArgs e)
+	{
+		string nome = Guna2TextBox1.Text;
+		if (!double.TryParse(Guna2TextBox3.Text, out var preco))
+		{
+			Debugger.Launch();
+			throw new FormatException("Por favor, insira um valor numérico válido para o preço.");
+		}
+		if (!int.TryParse(Guna2TextBox2.Text, out var quantidade))
+		{
+			Debugger.Launch();
+			throw new FormatException("Por favor, insira um valor inteiro válido para a quantidade.");
+		}
+		string categoria = Guna2TextBox4.Text;
+		Produto produto = new Produto
+		{
+			nome = nome,
+			preco = Convert.ToDouble(decimal.Parse(Conversions.ToString(preco))),
+			quantidade = quantidade,
+			categoria = categoria
+		};
+		object[] array;
+		bool[] array2;
+		NewLateBinding.LateCall(produtoService, null, "CadastrarProduto", array = new object[1] { produto }, null, null, array2 = new bool[1] { true }, IgnoreReturn: true);
+		if (array2[0])
+		{
+			produto = (Produto)Conversions.ChangeType(RuntimeHelpers.GetObjectValue(array[0]), typeof(Produto));
+		}
+		Guna2TextBox1.Text = "";
+		Guna2TextBox3.Text = "";
+		Guna2TextBox2.Text = "";
+		Guna2TextBox4.Text = "";
+		MessageBox.Show("Produto cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+	}
+}
