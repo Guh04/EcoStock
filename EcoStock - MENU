@@ -1,27 +1,53 @@
-Public class Frm_Menu
+Public Class Frm_Menu
 
-Private Sub btn_cadastro_click(sender As Object, e As EventArgs) Handles MyBase.Click
-        Frm_cadastro.Show()
-        Me.Hide()
+    Public Sub AbrirFormularioNoPainel(Of T As {Form, New})(panel As Panel)
+        ' Criar uma nova instância do formulário
+        Dim formulario As T = New T()
+
+        ' Configurar o formulário para não ser de top level
+        formulario.TopLevel = False
+
+        ' Configurar o formulário para preencher o painel
+        formulario.Dock = DockStyle.Fill
+
+        ' Limpar o painel e adicionar o formulário a ele
+        panel.Controls.Clear()
+        panel.Controls.Add(formulario)
+
+        ' Mostrar o formulário
+        formulario.Show()
+        formulario.BringToFront()
     End Sub
 
-Private Sub btn_relatorio_click(sender As Object, e As EventArgs) Handles MyBase.Click
-        Frm_relatorio.Show()
-        Me.Hide()
+    Private Sub btn_mostrar_Click(sender As Object, e As EventArgs) Handles btn_mostrar.Click
+        btn_mostrar.Visible = False
+        imagem_pequena.Visible = False
+        btn_esconder.Visible = True
+        Panel_Sidemenu.Visible = False
+        Panel_Sidemenu.Width = 289
+        Guna2Transition1.ShowSync(Panel_Sidemenu)
+
     End Sub
 
-Private Sub btn_logout_click(sender As Object, e As EventArgs) Handles MyBase.Click
-        Me.close()
-        Frm_Login.Show()
+    Private Sub btn_esconder_Click(sender As Object, e As EventArgs) Handles btn_esconder.Click
+        Panel_Sidemenu.Visible = False
+        imagem_pequena.Visible = True
+        btn_esconder.Visible = False
+        btn_mostrar.Visible = True
+        Panel_Sidemenu.Width = 54
+        Guna2Transition1.ShowSync(Panel_Sidemenu)
+
     End Sub
 
-Private Sub btn_verde_click(sender As Object, e As EventArgs) Handles MyBase.Click
-        Me.hide()
-        Frm_verde.Show()
+    Private Sub Frm_Menu_Load(sender As Object, e As EventArgs)
+
     End Sub
 
+    Private Sub Guna2GradientButton1_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton1.Click
+        AbrirFormularioNoPainel(Of Frm_Energia)(Panel_Conteudo)
+    End Sub
 
-
-
-
+    Private Sub Guna2GradientButton2_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton2.Click
+        AbrirFormularioNoPainel(Of Frm_Cadastro)(Panel_Conteudo)
+    End Sub
 End Class
