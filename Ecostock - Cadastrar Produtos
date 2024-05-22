@@ -1,0 +1,69 @@
+Public Class Frm_CadastrarProduto
+    Private produtoService As Object
+
+    Private Sub Guna2GradientButton2_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton2.Click
+        Guna2TextBox1.Clear()
+        Guna2TextBox2.Clear()
+        Guna2TextBox3.Clear()
+        Guna2TextBox4.Clear()
+    End Sub
+
+    Private Sub Guna2CircleButton1_Click(sender As Object, e As EventArgs) Handles Guna2CircleButton1.Click
+        Frm_Menu.AbrirFormularioNoPainel(Of Frm_Cadastro)(Frm_Menu.Panel_Conteudo)
+    End Sub
+
+    Private Sub Guna2GradientButton1_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton1.Click
+
+
+        Dim nome As String = Guna2TextBox1.Text
+        Dim preco As Double
+        Dim quantidade As Integer
+
+        If Not Double.TryParse(Guna2TextBox3.Text, preco) Then
+
+            Debugger.Launch()
+
+
+            Throw New FormatException("Por favor, insira um valor numérico válido para o preço.")
+        End If
+
+        If Not Integer.TryParse(Guna2TextBox2.Text, quantidade) Then
+
+            Debugger.Launch()
+
+
+            Throw New FormatException("Por favor, insira um valor inteiro válido para a quantidade.")
+        End If
+
+        Dim categoria As String = Guna2TextBox4.Text
+
+        Dim produto As New Produto With {
+        .nome = nome,
+        .preco = Decimal.Parse(preco),
+        .quantidade = quantidade,
+        .categoria = categoria
+    }
+
+
+        produtoService.CadastrarProduto(produto)
+
+
+        Guna2TextBox1.Text = ""
+        Guna2TextBox3.Text = ""
+        Guna2TextBox2.Text = ""
+        Guna2TextBox4.Text = ""
+
+        MessageBox.Show("Produto cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    End Sub
+
+
+    Private Class Produto
+        Public Property nome As String
+        Public Property preco As Double
+        Public Property quantidade As Integer
+        Public Property categoria As String
+    End Class
+End Class
+
+
