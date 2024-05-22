@@ -1,0 +1,55 @@
+
+Imports MySql.Data.MySqlClient
+
+Public Class Frm_Login
+
+    Private Sub Guna2GradientButton1_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton1.Click
+
+         Public Class Form1
+        Private Sub btnEntrar_Click(sender As Object, e As EventArgs, guna2TextBox1 As Guna.UI2.WinForms.Guna2TextBox, guna2TextBox2 As Guna.UI2.WinForms.Guna2TextBox) Handles btnEntrar.Click
+
+            Dim servidor As String = "localhost"
+            Dim porta As String = "3306"
+            Dim bancoDeDados As String = "Ecostock"
+            Dim usuario As String = "admin"
+            Dim senha As String = "1234"
+            Dim connectionString As String = $"Server={servidor};Port={porta};Database={bancoDeDados};Uid={usuario};Pwd={senha};"
+
+
+            Dim nomeUsuario As String = guna2TextBox1.Text
+            Dim senhaUsuario As String = guna2TextBox2.Text
+
+
+            Dim conexao As New MySqlConnection(connectionString)
+
+            Try
+
+                conexao.Open()
+
+
+                If conexao.State = ConnectionState.Open Then
+                    Dim comando As New MySqlCommand("SELECT COUNT(*) FROM tabela_usuarios WHERE nome = @usuario AND senha = @senha", conexao)
+                    ' comando.Parameters.AddWithValue("@usuario", nomeUsuario)
+                    ' comando.Parameters.AddWithValue("@senha", senhaUsuario)
+
+                Else
+                    MessageBox.Show("Não foi possível abrir a conexão com o banco de dados.")
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Erro ao conectar ao banco de dados: " & ex.Message)
+            Finally
+                ' Certificando-se de fechar a conexão, independentemente do resultado
+                If conexao.State = ConnectionState.Open Then
+                    conexao.Close()
+                End If
+            End Try
+        End Sub
+    End Class
+
+        Frm_Menu.Show()
+        Frm_Menu.AbrirFormularioNoPainel(Of Frm_Energia)(Frm_Menu.Panel_Conteudo)
+        Me.Hide()
+    End Sub
+
+
+End Class
