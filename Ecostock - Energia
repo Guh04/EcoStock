@@ -1,0 +1,121 @@
+
+
+Imports System.Runtime.InteropServices
+
+Public Class Frm_Energia
+
+    <DllImport("kernel32")>
+    Private Shared Function GetTickCount64() As ULong
+    End Function
+
+    ' Método para calcular e atualizar o formulário
+
+    Private Sub CalcularConsumoEnergia()
+        ' Obtenha o tempo de atividade do sistema em milissegundos
+        Dim uptime As ULong = GetTickCount64()
+        ' Converta para horas
+        Dim uptimeHours As Double = uptime / (1000 * 60 * 60)
+
+        ' Estimativa de consumo médio de energia por hora para um computador industrial (em watts)
+        Dim averagePowerUsagePerHour As Double = 300  ' Este é um valor fictício
+
+        ' Estime o consumo total de energia
+        Dim estimatedEnergyConsumption As Double = uptimeHours * averagePowerUsagePerHour
+
+
+
+        If estimatedEnergyConsumption <= 1000 Then
+            Label5.Text = "Baixo"
+
+        ElseIf (estimatedEnergyConsumption >= 1001) And (estimatedEnergyConsumption <= 1700) Then
+            Label5.Text = "Médio"
+
+        Else
+            Label5.Text = "Alto"
+
+        End If
+
+
+        ' Exibir o resultado nos controles do formulário
+        Lbl_HoraLigada.Text = $"O sistema está ligado há {Math.Round(uptimeHours, 2)} horas."
+        Lbl_EnergiaHora.Text = $"Estimativa de consumo de energia: {Math.Round(estimatedEnergyConsumption, 2)} Wh"
+
+
+    End Sub
+
+
+    Private Sub Frm_Energia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CalcularConsumoEnergia()
+        Label16.Text = DateTime.Now.ToString("dd/MM/yy - HH:mm")
+
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        CalcularConsumoEnergia()
+    End Sub
+
+
+
+    Private Sub Guna2ToggleSwitch2_CheckedChanged(sender As Object, e As EventArgs) Handles Guna2ToggleSwitch2.CheckedChanged
+
+        If Guna2ToggleSwitch2.Checked Then
+
+            Me.BackColor = Color.White
+            Label1.ForeColor = Color.Black
+            Label2.ForeColor = Color.Black
+            Label16.ForeColor = Color.Black
+            Label7.ForeColor = Color.Black
+            Label3.ForeColor = Color.Black
+            Label15.ForeColor = Color.Black
+            Label18.ForeColor = Color.Black
+            Lbl_HoraLigada.ForeColor = Color.Black
+            Lbl_EnergiaHora.ForeColor = Color.Black
+            Label5.ForeColor = Color.Black
+            Label17.ForeColor = Color.Black
+            Guna2ShadowPanel1.FillColor = Color.Silver
+            Guna2ShadowPanel2.FillColor = Color.Silver
+            Guna2ShadowPanel3.FillColor = Color.Silver
+            Frm_Cadastro.BackColor = Color.White
+            Frm_CadastrarProduto.BackColor = Color.White
+            Frm_CadastrarFuncionario.BackColor = Color.White
+
+        Else
+            ' muda a cor de fundo do formulário para a cor original ou outra cor desejada
+            Me.BackColor = Color.FromArgb(0, 44, 72)
+            Label1.ForeColor = Color.White
+            Label2.ForeColor = Color.White
+            Label16.ForeColor = Color.White
+            Label15.ForeColor = Color.White
+            Label18.ForeColor = Color.White
+            Label7.ForeColor = Color.White
+            Label3.ForeColor = Color.White
+            Lbl_HoraLigada.ForeColor = Color.White
+            Lbl_EnergiaHora.ForeColor = Color.White
+            Label5.ForeColor = Color.White
+            Label17.ForeColor = Color.White
+            Guna2ShadowPanel1.FillColor = Color.FromArgb(0, 44, 72)
+            Guna2ShadowPanel2.FillColor = Color.FromArgb(0, 44, 72)
+            Guna2ShadowPanel3.FillColor = Color.FromArgb(0, 44, 72)
+            Frm_Cadastro.BackColor = Color.FromArgb(0, 44, 72)
+            Frm_CadastrarProduto.BackColor = Color.FromArgb(0, 44, 72)
+            Frm_CadastrarFuncionario.BackColor = Color.FromArgb(0, 44, 72)
+        End If
+    End Sub
+
+    Private Sub Guna2ToggleSwitch4_CheckedChanged(sender As Object, e As EventArgs) Handles Guna2ToggleSwitch4.CheckedChanged
+        If Guna2ToggleSwitch4.Checked Then
+
+            Guna2ShadowPanel3.Visible = True
+            Label15.Visible = True
+            Label17.Visible = True
+            Label18.Visible = True
+        Else
+
+            Guna2ShadowPanel3.Visible = False
+            Label15.Visible = False
+            Label17.Visible = False
+            Label18.Visible = False
+
+        End If
+    End Sub
+End Class
